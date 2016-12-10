@@ -83,7 +83,7 @@ function receivedMessage(event) {
 function sendGenericMessage(recipientId, messageText) {
   var messageData = {
     "recipient":{
-      "id":"USER_ID"
+      "id":recipientId
     },
     "message":{
       "attachment":{
