@@ -118,6 +118,42 @@ function sendGenericMessage(recipientId, messageText) {
   }
   callSendAPI(messageData);
 }
+function sendGenericMessageeiei(recipientId, messageText) {
+  var messageData = {
+    "recipient":{
+      "id":recipientId
+    },
+    "message":{
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"generic",
+          "elements":[
+            {
+              "title":"Welcome to Peter\'s Hats",
+              "item_url":"https://petersfancybrownhats.com",
+              "image_url":"https://petersfancybrownhats.com/company_image.png",
+              // "subtitle":"We\'ve got the right hat for everyone.",
+              "buttons":[
+                {
+                  "type":"web_url",
+                  "url":"https://petersfancybrownhats.com",
+                  "title":"View Website"
+                },
+                {
+                  "type":"postback",
+                  "title":"Start Chatting",
+                  "payload":"eiei"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+  callSendAPI(messageData);
+}
 function receivedPostback(event) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
@@ -128,8 +164,8 @@ function receivedPostback(event) {
   console.log("Received postback for user %d and page %d with payload '%s' " +
     "at %d", senderID, recipientID, payload, timeOfPostback);
 
-    if(payload === 'DEVELOPER_DEFINED_PAYLOAD'){
-      sendGenericMessage(senderID);
+    if(payload === 'eiei'){
+      sendGenericMessageeiei(senderID);
     }
   sendTextMessage(senderID, "Postback called");
 }
